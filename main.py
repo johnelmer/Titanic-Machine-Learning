@@ -6,6 +6,7 @@ def clean_data(df):
     df = df.drop('Cabin', axis=1)
     df = df.drop('Ticket', axis=1)
     df = df.drop('Name', axis=1)
+    df = df.drop('PassengerId', axis=1)
     df['Sex'].replace({'male': 0, 'female': 1},inplace=True)
     df['Embarked'] = df['Embarked'].fillna('S')
     for pclass in df['Pclass'].unique():
@@ -20,6 +21,7 @@ def one_hot_encode(df):
     df.loc[df['Embarked'] == 'S', 'Embarked_S'] = 1
     df.loc[df['Embarked'] == 'C', 'Embarked_C'] = 1
     df.loc[df['Embarked'] == 'Q', 'Embarked_Q'] = 1
+    df = df.drop('Embarked', axis=1)
 
     return df
 
@@ -39,5 +41,6 @@ if __name__ == '__main__':
     train = pd.read_csv('/Users/johnelmer/Desktop/train.csv')
     train = clean_data(train)
     test = clean_data(test)
+    train = one_hot_encode(train)
     print(test.head())
     print(train.head())
