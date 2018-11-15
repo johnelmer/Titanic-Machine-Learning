@@ -1,14 +1,19 @@
 import pandas as pd
 
-train = pd.read_csv('/Users/johnelmer/Desktop/train.csv')
-y = train.pop('Survived')
+# y = train.pop('Survived')
 # X = train
-# test = pd.read_csv('/Users/johnelmer/Desktop/test.csv')
+def clean_data(df):
+    df = df.drop('Cabin', axis=1)
+    df['Embarked'] = df['Embarked'].fillna('S')
+    for pclass in df['Pclass'].unique():
+        df.loc[df['Pclass'] == pclass, 'Age'] = df.groupby('Pclass')['Age'].mean().loc[pclass]
 
+    return df
 
-train.drop('Cabin', axis=1, inplace=True)
-train['Embarked'] = train['Embarked'].fillna('S')
-for pclass in train['Pclass'].unique():
-    train.loc[train['Pclass'] == pclass, 'Age'] = train.groupby('Pclass')['Age'].mean().loc[pclass]
-
-print(train.head())
+if __name__ == '__main__':
+    test = pd.read_csv('/Users/johnelmer/Desktop/test.csv')
+    train = pd.read_csv('/Users/johnelmer/Desktop/train.csv')
+    train = clean_data(train)
+    test = clean_data(test)
+    print(test.head())
+    print(train.head())
