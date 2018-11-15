@@ -37,8 +37,8 @@ def extract_title(df):
     return df
 
 if __name__ == '__main__':
-    test = pd.read_csv('/Users/johnelmer/Desktop/test.csv')
-    train = pd.read_csv('/Users/johnelmer/Desktop/train.csv')
+    test = pd.read_csv('test.csv')
+    train = pd.read_csv('train.csv')
     train = clean_data(train)
     test = clean_data(test)
     train = one_hot_encode(train)
