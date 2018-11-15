@@ -6,7 +6,7 @@ def clean_data(df):
     df = df.drop('Cabin', axis=1)
     df['Embarked'] = df['Embarked'].fillna('S')
     for pclass in df['Pclass'].unique():
-        df.loc[df['Pclass'] == pclass, 'Age'] = df.groupby('Pclass')['Age'].mean().loc[pclass]
+        df.loc[(df['Pclass'] == pclass) & (df['Age'].isnull())] = df.groupby('Pclass')['Age'].mean().loc[pclass]
 
     return df
 
