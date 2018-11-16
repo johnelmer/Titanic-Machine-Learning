@@ -54,7 +54,7 @@ def build_model():
     return model
 
 if __name__ == '__main__':
-    train = pd.read_csv('train.csv')
+    train = pd.read_csv('./data/train.csv')
     # print(train['Survived'])
     y = train.pop('Survived')
     train = clean_data(train)
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     # print(train.isnull().sum())
     model.fit(train, y)
     # print(train.head())
-    test = pd.read_csv('test.csv')
+    test = pd.read_csv('./data/test.csv')
     test = clean_data(test)
     test = one_hot_encode(test)
     # print(test.head())
