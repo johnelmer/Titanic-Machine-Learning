@@ -49,7 +49,7 @@ def extract_title(df):
 def build_model():
     model = Pipeline([
         ('scaler', StandardScaler()),
-        ('logreg', LogisticRegression(penalty='l1', C=10))
+        ('logreg', LogisticRegression(penalty='l1', C=1000))
     ])
     return model
 
