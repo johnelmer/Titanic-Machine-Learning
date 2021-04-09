@@ -64,13 +64,13 @@ if __name__ == '__main__':
     # lab_enc = LabelEncoder()
     # tscores_encoded = lab_enc.fit_transform(y)
 
-    # gs = GridSearchCV(
-    #     model,
-    #     {'logreg__penalty': ['l1','l2'],
-    #     'logreg__C': [1000, 100, 1, 10]},
-    #     cv=5,
-    #     n_jobs=4
-    # )
+    gs = GridSearchCV(
+        model,
+        {'logreg__penalty': ['l1','l2'],
+        'logreg__C': [1000, 100, 1, 10]},
+        cv=5,
+        n_jobs=4
+    )
     # print(train.isnull().sum())
     model.fit(train, y)
     # print(train.head())
