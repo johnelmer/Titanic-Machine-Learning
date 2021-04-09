@@ -3,8 +3,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 
-# y = train.pop('Survived')
-# X = train
 def clean_data(df):
     df = df.drop('Cabin', axis=1)
     df = df.drop('Ticket', axis=1)
