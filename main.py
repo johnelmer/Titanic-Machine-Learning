@@ -64,20 +64,18 @@ if __name__ == '__main__':
     # lab_enc = LabelEncoder()
     # tscores_encoded = lab_enc.fit_transform(y)
 
-    gs = GridSearchCV(
-        model,
-        {'logreg__penalty': ['l1','l2'],
-        'logreg__C': [1000, 100, 1, 10]},
-        cv=5,
-        n_jobs=4
-    )
-    # print(train.isnull().sum())
+    # gs = GridSearchCV(
+    #     model,
+    #     {'logreg__penalty': ['l1','l2'],
+    #     'logreg__C': [1000, 100, 1, 10]},
+    #     cv=5,
+    #     n_jobs=4
+    # )
+
     model.fit(train, y)
-    # print(train.head())
     test = pd.read_csv('./data/test.csv')
     test = clean_data(test)
     test = one_hot_encode(test)
-    # print(test.head())
     prediction = model.predict(test)
 
     pd.DataFrame({'PassengerId': test.index.values + 892, 'Survived': prediction}).to_csv('results.csv', index = False)
